@@ -133,7 +133,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                 progress=progress_for_pyrogram,
                 progress_args=(
                     client,
-                    "**DOWNLOADING:**\n**Team SPY**",
+                    "**DOWNLOADING:**\n\n**Team SPY**",
                     edit,
                     time.time()
                 )
