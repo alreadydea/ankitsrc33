@@ -145,7 +145,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
             
             caption = str(file)
             if msg.caption is not None:
-                caption = msg.caption
+                caption = "Extracted by Team SPY"
             if str(file).split(".")[-1] in ['mkv', 'mp4', 'webm', 'mpe4', 'mpeg']:
                 if str(file).split(".")[-1] in ['webm', 'mkv', 'mpe4', 'mpeg']:
                     path = str(file).split(".")[0] + ".mp4"
