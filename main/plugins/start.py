@@ -1,4 +1,4 @@
-#Github.com/mrinvisible7
+#Github.com/devgaganin
 
 import os
 from .. import bot as Invix
@@ -48,7 +48,8 @@ async def start(event):
     await event.reply(text, 
                       buttons=[
                               [Button.inline("SET THUMB.", data="set"),
-                               Button.inline("REM THUMB.", data="rem")],        
+                               Button.inline("REM THUMB.", data="rem")],
+                               Button.url("Join Channel", url="https://t.me/dev_gagan")
                               ])                             
     '''                          
     
@@ -56,6 +57,6 @@ async def start(event):
                       buttons=[
                               [Button.inline("SET THUMB.", data="set"),
                                Button.inline("REM THUMB.", data="rem")],
-                              [Button.url("🔰 Maintained and Developed by 🔰", url="https://telegram.dog/mr_invisible_bots")]])
+                              [Button.url("Join Channel", url="https://telegram.dog/dev_gagan")]])
     
     
