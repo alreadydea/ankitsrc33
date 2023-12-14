@@ -59,6 +59,7 @@ async def start(event):
                       buttons=[
                               [Button.inline("SET THUMB.", data="set"),
                                Button.inline("REM THUMB.", data="rem")],
-                              [Button.url("Join Channel", url="https://telegram.dog/dev_gagan")]])
+                               Button.url("Join Channel", url="https://t.me/dev_gagan")
+                              ])
     
     
