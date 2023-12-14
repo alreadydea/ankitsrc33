@@ -3,7 +3,6 @@
 import os
 from .. import bot as Invix
 from telethon import events, Button
-from io import BytesIO
 
 #from ethon.mystarts import start_srb
     
