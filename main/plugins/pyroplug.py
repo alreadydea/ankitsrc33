@@ -23,7 +23,7 @@ logging.getLogger("pyrogram").setLevel(logging.INFO)
 logging.getLogger("telethon").setLevel(logging.INFO)
 
 def thumbnail(sender):
-    return f'{chat_id}.jpg' if os.path.exists(f'{chat_id}.jpg') else None
+    return f'{sender}.jpg' if os.path.exists(f'{sender}.jpg') else None
       
 async def check(userbot, client, link):
     logging.info(link)
@@ -70,19 +70,19 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
             chat = int(msg_link.split("/")[-2])
         file = ""
         try:
-            msg = await userbot.get_messages(chat_id = chat, message_ids = msg_id)
+            msg = await userbot.get_messages(sender = chat, message_ids = msg_id)
             logging.info(msg)
            # medi =  msg.document or msg.video or msg.audio or None
             if msg.service is not None:
                 await client.delete_messages(
-                    chat_id=sender,
+                    sender=sender,
                     message_ids=edit_id
                 )
                 #await client.edit_message_text(sender, edit_id, f"{msg.service}")
                 return None
             if msg.empty is not None:
                 await client.delete_messages(
-                    chat_id=sender,
+                    sender=sender,
                     message_ids=edit_id
                 )
                 #await client.edit_message_text(sender, edit_id, f"message dosnt exist \n{msg.empty}")
@@ -175,7 +175,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                     thumb_path = None
                 caption = msg.caption if msg.caption is not None else str(file).split("/")[-1]
                 await client.send_video(
-                    chat_id=sender,
+                    sender=sender,
                     video=path,
                     caption=caption,
                     supports_streaming=True,
