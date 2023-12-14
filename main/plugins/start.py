@@ -3,6 +3,7 @@
 import os
 from .. import bot as Invix
 from telethon import events, Button
+from io import BytesIO
 
 #from ethon.mystarts import start_srb
     
@@ -40,21 +41,26 @@ async def remt(event):
     except Exception:
         await event.edit("No thumbnail saved.")                        
   
+
 @Invix.on(events.NewMessage(incoming=True, pattern=f"{S}"))
 async def start(event):
-
-    telegraph_link = "https://telegra.ph/file/7d99b796b7726a93117db.jpg"
     text = "👋 Hi, I am 'Save Restricted Content Bot' Made with ❤️ __Gagan__\n\n✅ Send me the Link of any message of Restricted Channels to Clone it here..."
-    
-    await event.reply_photo(
-    photo=telegraph_link,
-    caption=text,
-    buttons=[
-        [Button.inline("SET THUMB.", data="set"),
-         Button.inline("REM THUMB.", data="rem")],
-        Button.url("Join Channel", url="https://t.me/dev_gagan")
-    ]
-)
+
+    # Replace 'your_photo_filename.jpg' with the actual filename of the photo
+    with open('photo.jpg', 'rb') as photo_file:
+        photo_data = BytesIO(photo_file.read())
+
+    await event.client.send_file(
+        event.chat_id,
+        file=photo_data,
+        caption=text,
+        buttons=[
+            [Button.inline("SET THUMB.", data="set"),
+             Button.inline("REM THUMB.", data="rem")],
+            Button.url("Join Channel", url="https://t.me/dev_gagan")
+        ]
+    )
+
 
     
     
