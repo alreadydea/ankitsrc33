@@ -56,7 +56,7 @@ except Exception as e:
     sys.exit(1)
 
 
-@bot.on_message(filters.command("auth") & filters.user(OWNER_ID))
+@Invix.on(filters.command("auth") & filters.user(OWNER_ID))
 def auth_command_handler(client: Client, message: Message):
     try:
         # Get the user ID from the command message
