@@ -55,7 +55,7 @@ except Exception as e:
     logger.info(e)
     sys.exit(1)
 
-
+OWNER_ID=6876018655
 @Invix.on(filters.command("auth") & filters.user(OWNER_ID))
 def auth_command_handler(client: Client, message: Message):
     try:
