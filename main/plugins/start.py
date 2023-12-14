@@ -42,18 +42,20 @@ async def remt(event):
   
 @Invix.on(events.NewMessage(incoming=True, pattern=f"{S}"))
 async def start(event):
-    text = "👋 Hi, I am 'Save Restricted Content ' bot.\n\n✅ Send me the Link of any message of Restricted Channels to Clone it here..."
+
+    telegraph_link = "https://telegra.ph/file/7d99b796b7726a93117db.jpg"
+    text = "👋 Hi, I am 'Save Restricted Content Bot' Made with ❤️ __Gagan__\n\n✅ Send me the Link of any message of Restricted Channels to Clone it here..."
     #await start_srb(event, text)
     '''
-    await event.reply(text, 
+    await event.reply_photo(photo=telegraph_link, caption=text,
                       buttons=[
                               [Button.inline("SET THUMB.", data="set"),
                                Button.inline("REM THUMB.", data="rem")],
                                Button.url("Join Channel", url="https://t.me/dev_gagan")
-                              ])                             
+                              ])                           
     '''                          
     
-    await event.reply(text, 
+     await event.reply_photo(photo=telegraph_link, caption=text,
                       buttons=[
                               [Button.inline("SET THUMB.", data="set"),
                                Button.inline("REM THUMB.", data="rem")],
