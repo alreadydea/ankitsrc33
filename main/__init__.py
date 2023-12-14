@@ -1,6 +1,7 @@
 #Github.com/mrinvisible7
 
 from pyrogram import Client, filters
+from pyrogram.types import Message
 
 from telethon.sessions import StringSession
 from telethon.sync import TelegramClient
