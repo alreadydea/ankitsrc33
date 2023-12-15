@@ -1,5 +1,5 @@
 import os
-from .. import bot as Invix
+from .. import bot as gagan
 from telethon import events, Button
 from telethon.tl.types import InputMediaPhoto
 
@@ -13,13 +13,13 @@ def is_set_button(data):
 def is_rem_button(data):
     return data == "rem"
 
-@Invix.on(events.CallbackQuery(pattern=b"set"))
+@gagan.on(events.CallbackQuery(pattern=b"set"))
 async def sett(event):    
-    Invix = event.client
+    gagan = event.client
     button = await event.get_message()
     msg = await button.get_reply_message()
     await event.delete()
-    async with Invix.conversation(event.chat_id) as conv: 
+    async with gagan.conversation(event.chat_id) as conv: 
         xx = await conv.send_message("Send me any image for thumbnail as a `reply` to this message.")
         x = await conv.get_reply()
         if not x.media:
@@ -36,9 +36,9 @@ async def sett(event):
         os.rename(path, f'./{event.sender_id}.jpg')
         await t.edit("Temporary thumbnail saved!")
 
-@Invix.on(events.CallbackQuery(pattern=b"rem"))
+@gagan.on(events.CallbackQuery(pattern=b"rem"))
 async def remt(event):  
-    Invix = event.client            
+    gagan = event.client            
     await event.edit('Trying... to save Bamby ... Wait')
     try:
         os.remove(f'{event.sender_id}.jpg')
@@ -46,7 +46,7 @@ async def remt(event):
     except Exception:
         await event.edit("No thumbnail saved.")                        
 
-@Invix.on(events.NewMessage(pattern=f"^{S}"))
+@gagan.on(events.NewMessage(pattern=f"^{S}"))
 async def start_command(event):
     # Creating inline keyboard with buttons
     buttons = [
@@ -56,7 +56,7 @@ async def start_command(event):
     ]
 
     # Sending photo with caption and buttons
-    await Invix.send_file(
+    await gagan.send_file(
         event.chat_id,
         file=START_PIC,
         caption=TEXT,
