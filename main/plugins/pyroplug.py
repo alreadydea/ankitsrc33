@@ -1,4 +1,4 @@
-#Github.com/devgaganin
+#Github.com/mrinvisible7
 
 import asyncio, time, os
 
@@ -70,19 +70,19 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
             chat = int(msg_link.split("/")[-2])
         file = ""
         try:
-            msg = await userbot.get_messages(sender = chat, message_ids = msg_id)
+            msg = await userbot.get_messages(chat_id = chat, message_ids = msg_id)
             logging.info(msg)
            # medi =  msg.document or msg.video or msg.audio or None
             if msg.service is not None:
                 await client.delete_messages(
-                    sender=sender,
+                    chat_id=sender,
                     message_ids=edit_id
                 )
                 #await client.edit_message_text(sender, edit_id, f"{msg.service}")
                 return None
             if msg.empty is not None:
                 await client.delete_messages(
-                    sender=sender,
+                    chat_id=sender,
                     message_ids=edit_id
                 )
                 #await client.edit_message_text(sender, edit_id, f"message dosnt exist \n{msg.empty}")
@@ -133,7 +133,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                 progress=progress_for_pyrogram,
                 progress_args=(
                     client,
-                    "**DOWNLOADING:**\n\n**Bot Made by Team SPY**",
+                    "**DOWNLOADING:**\n**bot made by Mr. Invisible**",
                     edit,
                     time.time()
                 )
@@ -145,7 +145,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
             
             caption = str(file)
             if msg.caption is not None:
-                caption = "Extracted by Team SPY"
+                caption = msg.caption
             if str(file).split(".")[-1] in ['mkv', 'mp4', 'webm', 'mpe4', 'mpeg']:
                 if str(file).split(".")[-1] in ['webm', 'mkv', 'mpe4', 'mpeg']:
                     path = str(file).split(".")[0] + ".mp4"
@@ -175,7 +175,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                     thumb_path = None
                 caption = msg.caption if msg.caption is not None else str(file).split("/")[-1]
                 await client.send_video(
-                    sender=sender,
+                    chat_id=sender,
                     video=path,
                     caption=caption,
                     supports_streaming=True,
@@ -186,7 +186,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                     progress=progress_for_pyrogram,
                     progress_args=(
                         client,
-                        '**UPLOADING:**\n\n**Bot Made by Team SPY**',
+                        '**UPLOADING:**\n**bot made by Mr. Invisible**',
                         upm,
                         time.time()
                     )
@@ -229,7 +229,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                     progress=progress_for_pyrogram,
                     progress_args=(
                         client,
-                        '**UPLOADING:**\n\n**bot made Gagan**',
+                        '**UPLOADING:**\n**bot made by Mr. Invisible**',
                         upm,
                         time.time()
                     )
