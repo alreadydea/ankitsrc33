@@ -1,4 +1,4 @@
-#Github.com/mrinvisible7
+# Join t.me/dev_gagan
 
 import asyncio, time, os
 
