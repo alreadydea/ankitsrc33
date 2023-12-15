@@ -47,7 +47,7 @@ async def progress_for_pyrogram(
             ),
         )  
 
-        tmp = progress + "**\n__Completed__**: {0} of {1}\n\n**__Speed__**: {2}/s\n\n**__Time__**: {3}\n".format(
+        tmp = progress + "**\n__Completed__:** {0} of {1}\n**__Speed__**: {2}/s\n**__Time__**: {3}\n".format(
             humanbytes(current),
             humanbytes(total),
             humanbytes(speed),
