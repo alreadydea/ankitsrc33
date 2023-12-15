@@ -55,9 +55,10 @@ async def start_command(event):
         [Button.url("Join Channel", url="https://telegram.dog/dev_gagan")]
     ]
 
-    # Sending message with photo, caption, and buttons
-    await event.respond(
-        file=InputMediaPhoto(file=START_PIC),
+    # Sending photo with caption and buttons
+    await Invix.send_file(
+        event.chat_id,
+        file=START_PIC,
         caption=TEXT,
         buttons=buttons
     )
