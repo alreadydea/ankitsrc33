@@ -1,4 +1,4 @@
-#Github.com/mrinvisible7
+#Github.com/devgaganin
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
