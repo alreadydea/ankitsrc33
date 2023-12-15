@@ -1,6 +1,5 @@
 
-https://github.com/vasusen-code/Telethon/archive/refs/tags/v1.24.0.zip
-#ethon==1.3.8
+https://github.com/devgaganin/ankitsrc/blob/main/gagantelethon.zip
 cryptg
 tgcrypto
 Pyrogram==2.0.93
