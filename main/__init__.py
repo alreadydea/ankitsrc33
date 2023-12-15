@@ -7,7 +7,7 @@ from telethon.sessions import StringSession
 from telethon.sync import TelegramClient
 
 from decouple import config
-import logging, time, sys
+import logging, time, sys, logger
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
