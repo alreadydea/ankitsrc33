@@ -3,10 +3,15 @@
 import os
 from .. import bot as Invix
 from telethon import events, Button
-    
-S = '/' + 's' + 't' + 'a' + 'r' + 't'
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-@Invix.on(events.callbackquery.CallbackQuery(data="set"))
+
+S = "/start"
+START_PIC = "https://graph.org/file/ffd7da274e555ed3a9fee.jpg"
+TEXT = "👋 Hi, I am 'Save Restricted Content' bot Made with ❤️ by __**Team SPY**__\n\n✅ Send me the Link of any message of Restricted Channels to Clone it here.\nFor private channel's messages, send the Invite Link first.\n\n👨🏻‍💻Owner: https://telegram.dog/Mister_invisiblebot.\n**support:** https://telegram.dog/mr_invisible_bots"
+
+@Invix.on_callback_query(filters.regex("^set$"))
 async def sett(event):    
     Invix = event.client
     button = await event.get_message()
@@ -17,6 +22,7 @@ async def sett(event):
         x = await conv.get_reply()
         if not x.media:
             xx.edit("No media found.")
+            return
         mime = x.file.mime_type
         if 'png' not in mime and 'jpg' not in mime and 'jpeg' not in mime:
             return await xx.edit("No image found.")
@@ -27,8 +33,8 @@ async def sett(event):
             os.remove(f'{event.sender_id}.jpg')
         os.rename(path, f'./{event.sender_id}.jpg')
         await t.edit("Temporary thumbnail saved!")
-        
-@Invix.on(events.callbackquery.CallbackQuery(data="rem"))
+
+@Invix.on_callback_query(filters.regex("^rem$"))
 async def remt(event):  
     Invix = event.client            
     await event.edit('Trying.')
@@ -37,13 +43,19 @@ async def remt(event):
         await event.edit('Removed!')
     except Exception:
         await event.edit("No thumbnail saved.")                        
-  
-@Invix.on(events.NewMessage(incoming=True, pattern=f"{S}"))
-async def start(event):
-    text = "👋 Hi, I am 'Save Restricted Content ' bot.\n\n✅ Send me the Link of any message of Restricted Channels to Clone it here.\nFor private channel's messages, send the Invite Link first.\n\n👨🏻‍💻Owner: https://telegram.dog/Mister_invisiblebot.\n**support:** https://telegram.dog/mr_invisible_bots"
-    #await start_srb(event, text)
-    await event.reply(text, 
-                      buttons=[
-                              [Button.inline("SET THUMB.", data="set"),
-                               Button.inline("REM THUMB.", data="rem")],
-                              [Button.url("Join Channel", url="https://telegram.dog/dev_gagan")]])
+
+@Invix.on_message(filters.command("start") & filters.private)
+async def start_command(_, message):
+    # Creating inline keyboard with buttons
+    reply_markup = InlineKeyboardMarkup([
+        [InlineKeyboardButton("SET THUMB.", callback_data="set"),
+         InlineKeyboardButton("REM THUMB.", callback_data="rem")],
+        [InlineKeyboardButton("Join Channel", url="https://telegram.dog/dev_gagan")]
+    ])
+
+    # Sending message with photo, caption, and buttons
+    await message.reply_photo(
+        START_PIC,
+        caption=TEXT,
+        reply_markup=reply_markup
+    )
