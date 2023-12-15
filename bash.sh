@@ -1,2 +1,2 @@
-echo "starting Bot ~@save_restricted";
+echo "starting Bot .... ";
 python3 -m main
