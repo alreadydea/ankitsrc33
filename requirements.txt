@@ -1,5 +1,5 @@
 
-https://github.com/devgaganin/ankitsrc/blob/main/gagantelethon.zip
+https://devgagan.in/wp-content/uploads/2023/12/gagantelethon.zip
 cryptg
 tgcrypto
 Pyrogram==2.0.93
