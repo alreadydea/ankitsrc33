@@ -8,7 +8,7 @@ Plugin for both public & private channels!
 import logging
 import time, os, asyncio
 
-from .. import bot as Invix
+from .. import bot as gagan
 from .. import userbot, Bot, AUTH, SUDO_USERS
 #from .. import FORCESUB as fs
 from main.plugins.pyroplug import check, get_bulk_msg
@@ -36,7 +36,7 @@ ids = []
     msg = await userbot.get_messages(chat, ids=id)
     await event.client.send_message(event.chat_id, msg) 
 '''   
-@Invix.on(events.NewMessage(incoming=True, pattern='/batch'))
+@gagan.on(events.NewMessage(incoming=True, pattern='/batch'))
 async def _batch(event):
     '''
     #if not event.is_private:
@@ -51,7 +51,7 @@ async def _batch(event):
     s = False
     if f'{event.chat_id}' in batch:
         return await event.reply("You've already started one batch, wait for it to complete you dumbfuck owner!")
-    async with Invix.conversation(event.chat_id) as conv: 
+    async with gagan.conversation(event.chat_id) as conv: 
         if not s:
             await conv.send_message("Send me the message link you want to start saving from, as a reply to this message.", buttons=Button.force_reply())
             try:
@@ -97,7 +97,7 @@ async def _batch(event):
             ids.clear()
             batch.clear()
 
-@Invix.on(events.callbackquery.CallbackQuery(data="cancel"))
+@gagan.on(events.callbackquery.CallbackQuery(data="cancel"))
 async def cancel(event):
     ids.clear()
     
