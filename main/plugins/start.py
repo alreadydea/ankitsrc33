@@ -61,6 +61,3 @@ async def start_command(event):
         caption=TEXT,
         buttons=buttons
     )
-
-# Run the application
-Invix.run()
