@@ -6,12 +6,17 @@ from telethon import events, Button
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-
 S = "/start"
 START_PIC = "https://graph.org/file/ffd7da274e555ed3a9fee.jpg"
 TEXT = "👋 Hi, I am 'Save Restricted Content' bot Made with ❤️ by __**Team SPY**__\n\n✅ Send me the Link of any message of Restricted Channels to Clone it here.\nFor private channel's messages, send the Invite Link first.\n\n👨🏻‍💻Owner: https://telegram.dog/Mister_invisiblebot.\n**support:** https://telegram.dog/mr_invisible_bots"
 
-@Invix.on_callback_query(filters.regex("^set$"))
+def is_set_button(data):
+    return data == "set"
+
+def is_rem_button(data):
+    return data == "rem"
+
+@Invix.on_callback_query(filters.create(lambda _, query: is_set_button(query.data)))
 async def sett(event):    
     Invix = event.client
     button = await event.get_message()
@@ -34,10 +39,10 @@ async def sett(event):
         os.rename(path, f'./{event.sender_id}.jpg')
         await t.edit("Temporary thumbnail saved!")
 
-@Invix.on_callback_query(filters.regex("^rem$"))
+@Invix.on_callback_query(filters.create(lambda _, query: is_rem_button(query.data)))
 async def remt(event):  
     Invix = event.client            
-    await event.edit('Trying.')
+    await event.edit('Trying... to save Bamby ... Wait')
     try:
         os.remove(f'{event.sender_id}.jpg')
         await event.edit('Removed!')
