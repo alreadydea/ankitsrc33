@@ -29,8 +29,8 @@ async def progress_for_pyrogram(
                 if not statusMsg["running"]:
                     bot.stop_transmission()
         speed = current / diff
-        elapsed_time = round(diff) * 1000
-        time_to_completion = round((total - current) / speed) * 1000
+        elapsed_time = round(diff) * 1
+        time_to_completion = round((total - current) / speed) * 1
         estimated_total_time = elapsed_time + time_to_completion
 
         elapsed_time = TimeFormatter(milliseconds=elapsed_time)
@@ -47,7 +47,7 @@ async def progress_for_pyrogram(
             ),
         )  
 
-        tmp = progress + "GROSSS: {0} of {1}\n\nSpeed: {2}/s\n\nETA: {3}\n".format(
+        tmp = progress + "**__Completed__**: {0} of {1}\n\**__SPEED__**: {2}/s\n\n**__Time__**: {3}\n".format(
             humanbytes(current),
             humanbytes(total),
             humanbytes(speed),
