@@ -1,10 +1,8 @@
-#Github.com/devgaganin
+#Github.com/mrinvisible7
 
 import os
 from .. import bot as Invix
 from telethon import events, Button
-
-#from ethon.mystarts import start_srb
     
 S = '/' + 's' + 't' + 'a' + 'r' + 't'
 
@@ -40,16 +38,12 @@ async def remt(event):
     except Exception:
         await event.edit("No thumbnail saved.")                        
   
-
 @Invix.on(events.NewMessage(incoming=True, pattern=f"{S}"))
 async def start(event):
-    text = "👋 Hi, I am 'Save Restricted Content Bot' Made with ❤️ __Team SPY__\n\n✅ Send me the Link of any message of Restricted Channels to Clone it here..."
-
+    text = "👋 Hi, I am 'Save Restricted Content ' bot.\n\n✅ Send me the Link of any message of Restricted Channels to Clone it here.\nFor private channel's messages, send the Invite Link first.\n\n👨🏻‍💻Owner: https://telegram.dog/Mister_invisiblebot.\n**support:** https://telegram.dog/mr_invisible_bots"
+    #await start_srb(event, text)
     await event.reply(text, 
                       buttons=[
                               [Button.inline("SET THUMB.", data="set"),
                                Button.inline("REM THUMB.", data="rem")],
                               [Button.url("Join Channel", url="https://telegram.dog/dev_gagan")]])
-    
-    
-    
