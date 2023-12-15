@@ -1,10 +1,7 @@
-#Github.com/devgaganin
-
 import os
 from .. import bot as Invix
 from telethon import events, Button
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from telethon.tl.types import InputMediaPhoto
 
 S = "/start"
 START_PIC = "https://graph.org/file/ffd7da274e555ed3a9fee.jpg"
@@ -16,7 +13,7 @@ def is_set_button(data):
 def is_rem_button(data):
     return data == "rem"
 
-@Invix.on_callback_query(filters.create(lambda _, query: is_set_button(query.data)))
+@Invix.on(events.CallbackQuery(pattern=b"set"))
 async def sett(event):    
     Invix = event.client
     button = await event.get_message()
@@ -39,7 +36,7 @@ async def sett(event):
         os.rename(path, f'./{event.sender_id}.jpg')
         await t.edit("Temporary thumbnail saved!")
 
-@Invix.on_callback_query(filters.create(lambda _, query: is_rem_button(query.data)))
+@Invix.on(events.CallbackQuery(pattern=b"rem"))
 async def remt(event):  
     Invix = event.client            
     await event.edit('Trying... to save Bamby ... Wait')
@@ -49,18 +46,21 @@ async def remt(event):
     except Exception:
         await event.edit("No thumbnail saved.")                        
 
-@Invix.on_message(filters.command("start") & filters.private)
-async def start_command(_, message):
+@Invix.on(events.NewMessage(pattern=f"^{S}"))
+async def start_command(event):
     # Creating inline keyboard with buttons
-    reply_markup = InlineKeyboardMarkup([
-        [InlineKeyboardButton("SET THUMB.", callback_data="set"),
-         InlineKeyboardButton("REM THUMB.", callback_data="rem")],
-        [InlineKeyboardButton("Join Channel", url="https://telegram.dog/dev_gagan")]
-    ])
+    buttons = [
+        [Button.inline("SET THUMB.", data="set"),
+         Button.inline("REM THUMB.", data="rem")],
+        [Button.url("Join Channel", url="https://telegram.dog/dev_gagan")]
+    ]
 
     # Sending message with photo, caption, and buttons
-    await message.reply_photo(
-        START_PIC,
+    await event.respond(
+        file=InputMediaPhoto(file=START_PIC),
         caption=TEXT,
-        reply_markup=reply_markup
+        buttons=buttons
     )
+
+# Run the application
+Invix.run()
