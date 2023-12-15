@@ -1,4 +1,4 @@
-#Github.com/mrinvisible7
+#Github.com/devgaganin
 
 import time, os
 
